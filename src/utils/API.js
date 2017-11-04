@@ -1,9 +1,9 @@
 import axios from "axios";
 const BASEURL = "https://dog.ceo";
-let queryBase = `/api/breed/`;
+let queryBase = `/api/`;
 
 export default {
   search: function(query) {
-    return axios.get(BASEURL + queryBase + query + `/images`);
+    return axios.get(BASEURL + queryBase + query);
   }
 };

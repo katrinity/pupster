@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import SearchResults from "./SearchResults"
-import SearchForm from "./SearchForm"
+import SearchResults from "../SearchResults"
+import SearchForm from "../SearchForm"
 import API from "../../utils/API"
 
 class Search extends Component {
@@ -10,7 +10,7 @@ class Search extends Component {
   };
 
   componentDidMount() {
-    API.search("beagle")
+    API.search("breed/beagle/images")
       .then(res => {
         console.log(res);
         this.setState({result: res.data.message})
@@ -25,7 +25,8 @@ class Search extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    API.search(this.state.searchQuery)
+    let newQuery = `breed/${this.state.searchQuery}/images`;
+    API.search(newQuery)
       .then(res => this.setState({result: res.data.message}))
       .catch(err => console.log(err));
   }
