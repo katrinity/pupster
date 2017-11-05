@@ -11,7 +11,7 @@ App to discover dog pics
 * Node.js 
 * Express
 * React
-
+* Calls https://dog.ceo API for dog pictures
 
 ## URLs
 
