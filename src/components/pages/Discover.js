@@ -16,7 +16,7 @@ class Discover extends Component {
   render(){
     return(
       <div className="container">
-        <h1>Discover Page</h1>
+        <div className="jumbotron discoverjumbo"><h1 className="text-center">Discover Page</h1></div>
         <DiscoverPic 
           pic={this.props.dogPic}
           numFriends={this.props.friended}

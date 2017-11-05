@@ -16,7 +16,7 @@ class Search extends Component {
   render(){
     return(
       <div className="container">
-        <h1>Search for Dog Pics</h1>
+        <div className="jumbotron searchjumbo"><h1 className="text-right">Search for Dog Pics</h1></div>
         <SearchForm 
           handleInputChange={this.props.handleInputChange}
           value={this.props.searchQuery}
