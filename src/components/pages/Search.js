@@ -4,43 +4,25 @@ import SearchForm from "../SearchForm"
 import API from "../../utils/API"
 
 class Search extends Component {
-  state ={
-    searchQuery: "",
-    result: []
-  };
 
   componentDidMount() {
-    API.search("breed/beagle/images")
+    API.search(`breed/${this.props.searchQuery}/images`)
       .then(res => {
-        console.log(res);
-        this.setState({result: res.data.message})
+        this.props.stateChange("searchResult", res.data.message);
         })
       .catch(err => console.log(err));
   };
-
-  handleInputChange = (event) => {
-    let searchInput = event.target.value;
-    this.setState({searchQuery: searchInput});
-  };
-
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    let newQuery = `breed/${this.state.searchQuery}/images`;
-    API.search(newQuery)
-      .then(res => this.setState({result: res.data.message}))
-      .catch(err => console.log(err));
-  }
 
   render(){
     return(
       <div className="container">
         <h1>Search for Dog Pics</h1>
         <SearchForm 
-          handleInputChange={this.handleInputChange}
-          value={this.state.searchQuery}
-          handleFormSubmit={this.handleFormSubmit}/>
+          handleInputChange={this.props.handleInputChange}
+          value={this.props.searchQuery}
+          handleFormSubmit={this.props.handleFormSubmit}/>
         <SearchResults 
-          resultsArray={this.state.result}/>
+          resultsArray={this.props.searchResult}/>
       </div>
     );
   };

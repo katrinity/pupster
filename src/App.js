@@ -10,7 +10,7 @@ class App extends Component {
 	state={
 		friended: 0,
 		dogPic: "",
-		searchQuery: "",
+		searchQuery: "beagle",
 		searchResult: []
 	}
 
@@ -37,6 +37,19 @@ class App extends Component {
 		this.setState({[stateName]: stateChange});
 	};
 
+  handleInputChange = (event) => {
+    let searchInput = event.target.value;
+    this.setState({searchQuery: searchInput});
+  };
+
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    let newQuery = `breed/${this.state.searchQuery}/images`;
+    API.search(newQuery)
+      .then(res => this.setState({searchResult: res.data.message}))
+      .catch(err => console.log(err));
+  }
+
 	render(){
 		return(
 		  <Router>
@@ -49,8 +62,14 @@ class App extends Component {
 		      	clickRight={this.clickRight}
 		      	dogPic={this.state.dogPic}
 		      	stateChange={this.handleState}
-		      	/>} />
-		      <Route path="/search" component={Search} />
+		      />} />
+		      <Route path="/search" render={() => <Search
+		      	searchQuery={this.state.searchQuery}
+		      	searchResult={this.state.searchResult}
+		      	handleInputChange={this.handleInputChange}
+		      	handleFormSubmit={this.handleFormSubmit}
+		      	stateChange={this.handleState}
+		      />} />
 		    </div>
 		  </Router>
 	)};

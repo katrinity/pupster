@@ -6,7 +6,7 @@ const SearchResults = props => {
   	dogList = <h3>No dogs found</h3>;
   } else{
   	dogList = props.resultsArray.map(x => 
-    <img src={x} className="resultsImage"/>);
+    <img src={x} className="resultsImage" key={x}/>);
   }
         
   return (
