@@ -15,7 +15,7 @@ App to discover dog pics
 
 ## URLs
 
-* App:  (TBD)
+* App:  http://brown-join.surge.sh/
 * GitHub Repository: https://github.com/natalieike/pupster
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
